@@ -1,0 +1,184 @@
+11/05/2022 20:35:36 : Beginning of Startup!
+974 plasmashell
+11/05/2022 20:35:36 : Display Manager is KDE, running KDE clause!
+11/05/2022 20:35:36 : Display Manager = display-manager
+11/05/2022 20:35:36 : Unbinding Console 1
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 20:35:36 : System has an NVIDIA GPU
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 20:35:36 : NVIDIA GPU Drivers Unloaded
+11/05/2022 20:35:36 : End of Startup!
+11/05/2022 20:35:41 : Beginning of Teardown!
+11/05/2022 20:35:41 : Loading NVIDIA GPU Drivers
+11/05/2022 20:35:41 : NVIDIA GPU Drivers Loaded
+grep: /tmp/vfio-is-amd: No such file or directory
+/usr/bin/systemctl
+11/05/2022 20:35:41 : Var has been collected from file: display-manager
+11/05/2022 20:35:41 : End of Teardown!
+11/05/2022 20:36:25 : Beginning of Startup!
+1682 plasmashell
+11/05/2022 20:36:25 : Display Manager is KDE, running KDE clause!
+11/05/2022 20:36:25 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 20:36:25 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 20:36:25 : NVIDIA GPU Drivers Unloaded
+11/05/2022 20:36:25 : End of Startup!
+11/05/2022 20:36:29 : Beginning of Teardown!
+11/05/2022 20:36:29 : Loading NVIDIA GPU Drivers
+11/05/2022 20:36:29 : NVIDIA GPU Drivers Loaded
+grep: /tmp/vfio-is-amd: No such file or directory
+/usr/bin/systemctl
+11/05/2022 20:36:29 : Var has been collected from file: display-manager
+/bin/vfio-teardown.sh: line 96: /tmp/vfio-bound-consoles: No such file or directory
+11/05/2022 20:36:29 : End of Teardown!
+11/05/2022 20:38:46 : Beginning of Startup!
+2389 plasmashell
+11/05/2022 20:38:46 : Display Manager is KDE, running KDE clause!
+11/05/2022 20:38:46 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 20:38:46 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 20:38:46 : NVIDIA GPU Drivers Unloaded
+11/05/2022 20:38:46 : End of Startup!
+11/05/2022 20:38:50 : Beginning of Teardown!
+11/05/2022 20:38:50 : Loading NVIDIA GPU Drivers
+11/05/2022 20:38:50 : NVIDIA GPU Drivers Loaded
+grep: /tmp/vfio-is-amd: No such file or directory
+/usr/bin/systemctl
+11/05/2022 20:38:50 : Var has been collected from file: display-manager
+/bin/vfio-teardown.sh: line 96: /tmp/vfio-bound-consoles: No such file or directory
+11/05/2022 20:38:50 : End of Teardown!
+11/05/2022 20:43:03 : Beginning of Startup!
+3589 plasmashell
+11/05/2022 20:43:03 : Display Manager is KDE, running KDE clause!
+11/05/2022 20:43:03 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 20:43:03 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 20:43:03 : NVIDIA GPU Drivers Unloaded
+11/05/2022 20:43:03 : End of Startup!
+11/05/2022 20:43:07 : Beginning of Teardown!
+11/05/2022 20:43:07 : Loading NVIDIA GPU Drivers
+11/05/2022 20:43:07 : NVIDIA GPU Drivers Loaded
+grep: /tmp/vfio-is-amd: No such file or directory
+/usr/bin/systemctl
+11/05/2022 20:43:07 : Var has been collected from file: display-manager
+/bin/vfio-teardown.sh: line 96: /tmp/vfio-bound-consoles: No such file or directory
+11/05/2022 20:43:07 : End of Teardown!
+11/05/2022 20:45:15 : Beginning of Startup!
+8321 plasmashell
+11/05/2022 20:45:15 : Display Manager is KDE, running KDE clause!
+11/05/2022 20:45:15 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 20:45:15 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 20:45:15 : NVIDIA GPU Drivers Unloaded
+11/05/2022 20:45:15 : End of Startup!
+11/05/2022 20:45:20 : Beginning of Teardown!
+11/05/2022 20:45:20 : Loading NVIDIA GPU Drivers
+11/05/2022 20:45:20 : NVIDIA GPU Drivers Loaded
+grep: /tmp/vfio-is-amd: No such file or directory
+/usr/bin/systemctl
+11/05/2022 20:45:20 : Var has been collected from file: display-manager
+/bin/vfio-teardown.sh: line 96: /tmp/vfio-bound-consoles: No such file or directory
+11/05/2022 20:45:20 : End of Teardown!
+11/05/2022 20:51:14 : Beginning of Startup!
+9396 plasmashell
+11/05/2022 20:51:14 : Display Manager is KDE, running KDE clause!
+11/05/2022 20:51:14 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 20:51:14 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 20:51:14 : NVIDIA GPU Drivers Unloaded
+11/05/2022 20:51:14 : End of Startup!
+11/05/2022 20:55:52 : Beginning of Startup!
+987 plasmashell
+11/05/2022 20:55:52 : Display Manager is KDE, running KDE clause!
+11/05/2022 20:55:52 : Display Manager = display-manager
+11/05/2022 20:55:52 : Unbinding Console 1
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 20:55:52 : System has an NVIDIA GPU
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 20:55:52 : NVIDIA GPU Drivers Unloaded
+11/05/2022 20:55:52 : End of Startup!
+11/05/2022 21:07:50 : Beginning of Startup!
+955 plasmashell
+11/05/2022 21:07:50 : Display Manager is KDE, running KDE clause!
+11/05/2022 21:07:50 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 21:07:50 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 21:07:50 : NVIDIA GPU Drivers Unloaded
+11/05/2022 21:07:50 : End of Startup!
+11/05/2022 21:17:45 : Beginning of Startup!
+947 plasmashell
+11/05/2022 21:17:45 : Display Manager is KDE, running KDE clause!
+11/05/2022 21:17:45 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 21:17:45 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 21:17:45 : NVIDIA GPU Drivers Unloaded
+11/05/2022 21:17:45 : End of Startup!
+11/05/2022 21:56:45 : Beginning of Startup!
+942 plasmashell
+11/05/2022 21:56:45 : Display Manager is KDE, running KDE clause!
+11/05/2022 21:56:45 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/05/2022 21:56:45 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/05/2022 21:56:45 : NVIDIA GPU Drivers Unloaded
+11/05/2022 21:56:45 : End of Startup!
+11/06/2022 04:39:40 : Beginning of Startup!
+985 plasmashell
+11/06/2022 04:39:40 : Display Manager is KDE, running KDE clause!
+11/06/2022 04:39:40 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/06/2022 04:39:40 : System has an NVIDIA GPU
+/bin/vfio-startup.sh: line 123: echo: write error: No such device
+modprobe: FATAL: Module drm_kms_helper is builtin.
+modprobe: FATAL: Module drm is builtin.
+11/06/2022 04:39:40 : NVIDIA GPU Drivers Unloaded
+11/06/2022 04:39:40 : End of Startup!
+11/06/2022 05:21:31 : Beginning of Startup!
+972 plasmashell
+11/06/2022 05:21:31 : Display Manager is KDE, running KDE clause!
+11/06/2022 05:21:31 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/06/2022 05:21:31 : System has an NVIDIA GPU
+11/06/2022 05:21:31 : NVIDIA GPU Drivers Unloaded
+11/06/2022 05:21:31 : End of Startup!
+11/06/2022 05:31:28 : Beginning of Startup!
+983 plasmashell
+11/06/2022 05:31:28 : Display Manager is KDE, running KDE clause!
+11/06/2022 05:31:28 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/06/2022 05:31:28 : System has an NVIDIA GPU
+11/06/2022 05:31:28 : NVIDIA GPU Drivers Unloaded
+11/06/2022 05:31:28 : End of Startup!
+11/06/2022 05:47:44 : Beginning of Startup!
+940 plasmashell
+11/06/2022 05:47:44 : Display Manager is KDE, running KDE clause!
+11/06/2022 05:47:44 : Display Manager = display-manager
+28:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti Lite Hash Rate] [10de:2489] (rev a1)
+11/06/2022 05:47:44 : System has an NVIDIA GPU
+11/06/2022 05:47:44 : NVIDIA GPU Drivers Unloaded
+11/06/2022 05:47:44 : End of Startup!

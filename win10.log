@@ -1,0 +1,1320 @@
+2022-11-05 19:10:10.398+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 10,sockets=10,cores=1,threads=1 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=32,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-2-storage","auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-2-format","read-only":false,"driver":"qcow2","file":"libvirt-2-storage","backing":null}' \
+-device '{"driver":"ide-hd","bus":"ide.0","drive":"libvirt-2-format","id":"sata0-0-0","bootindex":2}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Downloads/Win10_22H2_English_x64.iso","node-name":"libvirt-1-storage","auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":true,"driver":"raw","file":"libvirt-1-storage"}' \
+-device '{"driver":"ide-cd","bus":"ide.1","drive":"libvirt-1-format","id":"sata0-0-1","bootindex":1}' \
+-netdev tap,fd=33,id=hostnet0 \
+-device '{"driver":"e1000e","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-chardev pty,id=charserial0 \
+-device '{"driver":"isa-serial","chardev":"charserial0","id":"serial0","index":0}' \
+-chardev spicevmc,id=charchannel0,name=vdagent \
+-device '{"driver":"virtserialport","bus":"virtio-serial0.0","nr":1,"chardev":"charchannel0","id":"channel0","name":"com.redhat.spice.0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"spice"}' \
+-spice port=5900,addr=127.0.0.1,disable-ticketing=on,image-compression=off,seamless-migration=on \
+-device '{"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pcie.0","addr":"0x1"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-chardev spicevmc,id=charredir0,name=usbredir \
+-device '{"driver":"usb-redir","chardev":"charredir0","id":"redir0","bus":"usb.0","port":"2"}' \
+-chardev spicevmc,id=charredir1,name=usbredir \
+-device '{"driver":"usb-redir","chardev":"charredir1","id":"redir1","bus":"usb.0","port":"3"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+char device redirected to /dev/pts/2 (label charserial0)
+qxl_send_events: spice-server bug: guest stopped, ignoring
+2022-11-05T19:10:24.649487Z qemu-system-x86_64: terminating on signal 15 from pid 8721 (/usr/bin/libvirtd)
+2022-11-05 19:10:25.050+0000: shutting down, reason=destroyed
+2022-11-05 19:14:43.821+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-2-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-2-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-2-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-2-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-2-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 10,sockets=10,cores=1,threads=1 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=32,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-3-storage","auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-3-format","read-only":false,"driver":"qcow2","file":"libvirt-3-storage","backing":null}' \
+-device '{"driver":"ide-hd","bus":"ide.0","drive":"libvirt-3-format","id":"sata0-0-0","bootindex":1}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Downloads/Win10_22H2_English_x64.iso","node-name":"libvirt-2-storage","auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-2-format","read-only":true,"driver":"raw","file":"libvirt-2-storage"}' \
+-device '{"driver":"ide-cd","bus":"ide.1","drive":"libvirt-2-format","id":"sata0-0-1","bootindex":2}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Downloads/virtio-win-0.1.225.iso","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"raw","file":"libvirt-1-storage"}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":3,"write-cache":"on"}' \
+-netdev tap,fd=33,vhost=on,vhostfd=35,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-chardev pty,id=charserial0 \
+-device '{"driver":"isa-serial","chardev":"charserial0","id":"serial0","index":0}' \
+-chardev spicevmc,id=charchannel0,name=vdagent \
+-device '{"driver":"virtserialport","bus":"virtio-serial0.0","nr":1,"chardev":"charchannel0","id":"channel0","name":"com.redhat.spice.0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"spice"}' \
+-spice port=5900,addr=127.0.0.1,disable-ticketing=on,image-compression=off,seamless-migration=on \
+-device '{"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pcie.0","addr":"0x1"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-chardev spicevmc,id=charredir0,name=usbredir \
+-device '{"driver":"usb-redir","chardev":"charredir0","id":"redir0","bus":"usb.0","port":"2"}' \
+-chardev spicevmc,id=charredir1,name=usbredir \
+-device '{"driver":"usb-redir","chardev":"charredir1","id":"redir1","bus":"usb.0","port":"3"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+char device redirected to /dev/pts/2 (label charserial0)
+qxl_send_events: spice-server bug: guest stopped, ignoring
+2022-11-06T01:25:03.049519Z qemu-system-x86_64: terminating on signal 15 from pid 8721 (/usr/bin/libvirtd)
+2022-11-06 01:25:03.450+0000: shutting down, reason=destroyed
+2022-11-06 01:26:20.028+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-3-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-3-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-3-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-3-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-3-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 10,sockets=10,cores=1,threads=1 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=32,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Downloads/Win10_22H2_English_x64.iso","node-name":"libvirt-3-storage","auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-3-format","read-only":true,"driver":"raw","file":"libvirt-3-storage"}' \
+-device '{"driver":"ide-cd","bus":"ide.1","drive":"libvirt-3-format","id":"sata0-0-1","bootindex":1}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Downloads/virtio-win-0.1.225.iso","node-name":"libvirt-2-storage","auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-2-format","read-only":true,"driver":"raw","file":"libvirt-2-storage"}' \
+-device '{"driver":"ide-cd","bus":"ide.2","drive":"libvirt-2-format","id":"sata0-0-2","bootindex":2}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":3,"write-cache":"on"}' \
+-netdev tap,fd=33,vhost=on,vhostfd=35,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-chardev pty,id=charserial0 \
+-device '{"driver":"isa-serial","chardev":"charserial0","id":"serial0","index":0}' \
+-chardev spicevmc,id=charchannel0,name=vdagent \
+-device '{"driver":"virtserialport","bus":"virtio-serial0.0","nr":1,"chardev":"charchannel0","id":"channel0","name":"com.redhat.spice.0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"spice"}' \
+-spice port=5900,addr=127.0.0.1,disable-ticketing=on,image-compression=off,seamless-migration=on \
+-device '{"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pcie.0","addr":"0x1"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-chardev spicevmc,id=charredir0,name=usbredir \
+-device '{"driver":"usb-redir","chardev":"charredir0","id":"redir0","bus":"usb.0","port":"2"}' \
+-chardev spicevmc,id=charredir1,name=usbredir \
+-device '{"driver":"usb-redir","chardev":"charredir1","id":"redir1","bus":"usb.0","port":"3"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+char device redirected to /dev/pts/2 (label charserial0)
+qxl_send_events: spice-server bug: guest stopped, ignoring
+2022-11-06T01:41:17.915226Z qemu-system-x86_64: terminating on signal 15 from pid 8721 (/usr/bin/libvirtd)
+2022-11-06 01:41:18.315+0000: shutting down, reason=destroyed
+2022-11-06 01:41:29.856+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-4-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-4-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-4-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-4-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-4-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 10,sockets=10,cores=1,threads=1 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=32,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Downloads/Win10_22H2_English_x64.iso","node-name":"libvirt-3-storage","auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-3-format","read-only":true,"driver":"raw","file":"libvirt-3-storage"}' \
+-device '{"driver":"ide-cd","bus":"ide.1","drive":"libvirt-3-format","id":"sata0-0-1","bootindex":2}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Downloads/virtio-win-0.1.225.iso","node-name":"libvirt-2-storage","auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-2-format","read-only":true,"driver":"raw","file":"libvirt-2-storage"}' \
+-device '{"driver":"ide-cd","bus":"ide.2","drive":"libvirt-2-format","id":"sata0-0-2","bootindex":3}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=33,vhost=on,vhostfd=35,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-chardev pty,id=charserial0 \
+-device '{"driver":"isa-serial","chardev":"charserial0","id":"serial0","index":0}' \
+-chardev spicevmc,id=charchannel0,name=vdagent \
+-device '{"driver":"virtserialport","bus":"virtio-serial0.0","nr":1,"chardev":"charchannel0","id":"channel0","name":"com.redhat.spice.0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"spice"}' \
+-spice port=5900,addr=127.0.0.1,disable-ticketing=on,image-compression=off,seamless-migration=on \
+-device '{"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pcie.0","addr":"0x1"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-chardev spicevmc,id=charredir0,name=usbredir \
+-device '{"driver":"usb-redir","chardev":"charredir0","id":"redir0","bus":"usb.0","port":"2"}' \
+-chardev spicevmc,id=charredir1,name=usbredir \
+-device '{"driver":"usb-redir","chardev":"charredir1","id":"redir1","bus":"usb.0","port":"3"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+char device redirected to /dev/pts/2 (label charserial0)
+qxl_send_events: spice-server bug: guest stopped, ignoring
+2022-11-06T02:09:37.804560Z qemu-system-x86_64: terminating on signal 15 from pid 8721 (/usr/bin/libvirtd)
+2022-11-06 02:09:38.607+0000: shutting down, reason=destroyed
+2022-11-06 02:27:22.746+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-5-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-5-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-5-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-5-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-5-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=5,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=17,vhost=on,vhostfd=30,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pcie.0","addr":"0x1"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+libvirt:  error : libvirtd quit during handshake: Input/output error
+2022-11-06 02:27:22.753+0000: shutting down, reason=failed
+2022-11-06 02:27:23.115+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-6-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-6-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-6-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-6-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-6-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=5,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=17,vhost=on,vhostfd=28,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pcie.0","addr":"0x1"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+libvirt:  error : libvirtd quit during handshake: Input/output error
+2022-11-06 02:27:23.123+0000: shutting down, reason=failed
+2022-11-06 01:35:39.936+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pcie.0","addr":"0x1"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+qxl_send_events: spice-server bug: guest stopped, ignoring
+2022-11-06T01:35:40.729533Z qemu-system-x86_64: -device {"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}: vfio 0000:28:00.0: group 13 is not viable
+Please ensure all devices within the iommu_group are bound to their vfio bus driver.
+2022-11-06 01:35:40.852+0000: shutting down, reason=failed
+2022-11-06 01:36:28.524+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-2-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-2-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-2-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-2-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-2-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pcie.0","addr":"0x1"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+qxl_send_events: spice-server bug: guest stopped, ignoring
+2022-11-06T01:36:28.663999Z qemu-system-x86_64: -device {"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}: vfio 0000:28:00.0: group 13 is not viable
+Please ensure all devices within the iommu_group are bound to their vfio bus driver.
+2022-11-06 01:36:28.772+0000: shutting down, reason=failed
+2022-11-06 01:38:49.983+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-3-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-3-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-3-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-3-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-3-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06T01:38:50.132493Z qemu-system-x86_64: -device {"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}: vfio 0000:28:00.0: group 13 is not viable
+Please ensure all devices within the iommu_group are bound to their vfio bus driver.
+2022-11-06 01:38:50.239+0000: shutting down, reason=failed
+2022-11-06 01:43:07.032+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-4-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-4-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-4-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-4-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-4-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06T01:43:07.164549Z qemu-system-x86_64: -device {"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}: vfio 0000:28:00.0: group 13 is not viable
+Please ensure all devices within the iommu_group are bound to their vfio bus driver.
+2022-11-06 01:43:07.266+0000: shutting down, reason=failed
+2022-11-06 01:45:19.806+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-5-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-5-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-5-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-5-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-5-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06T01:45:19.941584Z qemu-system-x86_64: -device {"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}: vfio 0000:28:00.0: group 13 is not viable
+Please ensure all devices within the iommu_group are bound to their vfio bus driver.
+2022-11-06 01:45:20.062+0000: shutting down, reason=failed
+2022-11-06 01:51:18.499+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06 01:55:56.049+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=30,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06 02:07:54.789+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 1200 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":1258291200}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06 02:17:50.074+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=12,cores=1,threads=1 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=30,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06T02:29:16.221334Z qemu-system-x86_64: terminating on signal 15 from pid 1 (/sbin/init)
+2022-11-06 02:56:49.111+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,kernel_irqchip=on,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff,hv-vendor-id=123456789123,kvm=off \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=30,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06 10:39:44.341+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,kernel_irqchip=on,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff,hv-vendor-id=123456789123,kvm=off \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06 11:21:35.765+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,kernel_irqchip=on,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff,hv-vendor-id=123456789123,kvm=off \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06 11:31:32.018+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,kernel_irqchip=on,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff,hv-vendor-id=123456789123,kvm=off \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=31,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
+2022-11-06 11:47:48.420+0000: starting up libvirt version: 8.8.0, qemu version: 7.1.0, kernel: 5.15.76-1-MANJARO, hostname: Minty
+LC_ALL=C \
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin \
+HOME=/var/lib/libvirt/qemu/domain-1-win10 \
+XDG_DATA_HOME=/var/lib/libvirt/qemu/domain-1-win10/.local/share \
+XDG_CACHE_HOME=/var/lib/libvirt/qemu/domain-1-win10/.cache \
+XDG_CONFIG_HOME=/var/lib/libvirt/qemu/domain-1-win10/.config \
+/usr/bin/qemu-system-x86_64 \
+-name guest=win10,debug-threads=on \
+-S \
+-object '{"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-win10/master-key.aes"}' \
+-machine pc-q35-7.1,usb=off,vmport=off,kernel_irqchip=on,dump-guest-core=off,memory-backend=pc.ram \
+-accel kvm \
+-cpu host,migratable=on,topoext=on,hv-time=on,hv-relaxed=on,hv-vapic=on,hv-spinlocks=0x1fff,hv-vendor-id=123456789123,kvm=off \
+-m 8192 \
+-object '{"qom-type":"memory-backend-ram","id":"pc.ram","size":8589934592}' \
+-overcommit mem-lock=off \
+-smp 12,sockets=1,dies=1,cores=6,threads=2 \
+-uuid aba64b9f-ec58-46c3-a4c1-936f04d1fef9 \
+-display none \
+-no-user-config \
+-nodefaults \
+-chardev socket,id=charmonitor,fd=30,server=on,wait=off \
+-mon chardev=charmonitor,id=monitor,mode=control \
+-rtc base=localtime,driftfix=slew \
+-global kvm-pit.lost_tick_policy=delay \
+-no-hpet \
+-no-shutdown \
+-global ICH9-LPC.disable_s3=1 \
+-global ICH9-LPC.disable_s4=1 \
+-boot strict=on \
+-device '{"driver":"pcie-root-port","port":16,"chassis":1,"id":"pci.1","bus":"pcie.0","multifunction":true,"addr":"0x2"}' \
+-device '{"driver":"pcie-root-port","port":17,"chassis":2,"id":"pci.2","bus":"pcie.0","addr":"0x2.0x1"}' \
+-device '{"driver":"pcie-root-port","port":18,"chassis":3,"id":"pci.3","bus":"pcie.0","addr":"0x2.0x2"}' \
+-device '{"driver":"pcie-root-port","port":19,"chassis":4,"id":"pci.4","bus":"pcie.0","addr":"0x2.0x3"}' \
+-device '{"driver":"pcie-root-port","port":20,"chassis":5,"id":"pci.5","bus":"pcie.0","addr":"0x2.0x4"}' \
+-device '{"driver":"pcie-root-port","port":21,"chassis":6,"id":"pci.6","bus":"pcie.0","addr":"0x2.0x5"}' \
+-device '{"driver":"pcie-root-port","port":22,"chassis":7,"id":"pci.7","bus":"pcie.0","addr":"0x2.0x6"}' \
+-device '{"driver":"pcie-root-port","port":23,"chassis":8,"id":"pci.8","bus":"pcie.0","addr":"0x2.0x7"}' \
+-device '{"driver":"pcie-root-port","port":24,"chassis":9,"id":"pci.9","bus":"pcie.0","multifunction":true,"addr":"0x3"}' \
+-device '{"driver":"pcie-root-port","port":25,"chassis":10,"id":"pci.10","bus":"pcie.0","addr":"0x3.0x1"}' \
+-device '{"driver":"pcie-root-port","port":26,"chassis":11,"id":"pci.11","bus":"pcie.0","addr":"0x3.0x2"}' \
+-device '{"driver":"pcie-root-port","port":27,"chassis":12,"id":"pci.12","bus":"pcie.0","addr":"0x3.0x3"}' \
+-device '{"driver":"pcie-root-port","port":28,"chassis":13,"id":"pci.13","bus":"pcie.0","addr":"0x3.0x4"}' \
+-device '{"driver":"pcie-root-port","port":29,"chassis":14,"id":"pci.14","bus":"pcie.0","addr":"0x3.0x5"}' \
+-device '{"driver":"qemu-xhci","p2":15,"p3":15,"id":"usb","bus":"pci.2","addr":"0x0"}' \
+-device '{"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.3","addr":"0x0"}' \
+-blockdev '{"driver":"file","filename":"/home/twitchpid/Minty/VMS/win10.qcow2","node-name":"libvirt-1-storage","cache":{"direct":false,"no-flush":false},"auto-read-only":true,"discard":"unmap"}' \
+-blockdev '{"node-name":"libvirt-1-format","read-only":false,"cache":{"direct":false,"no-flush":false},"driver":"qcow2","file":"libvirt-1-storage","backing":null}' \
+-device '{"driver":"virtio-blk-pci","bus":"pci.5","addr":"0x0","drive":"libvirt-1-format","id":"virtio-disk0","bootindex":1,"write-cache":"on"}' \
+-netdev tap,fd=32,vhost=on,vhostfd=34,id=hostnet0 \
+-device '{"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:cb:69:1f","bus":"pci.1","addr":"0x0"}' \
+-device '{"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"}' \
+-audiodev '{"id":"audio1","driver":"none"}' \
+-device '{"driver":"ich9-intel-hda","id":"sound0","bus":"pcie.0","addr":"0x1b"}' \
+-device '{"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.0","id":"hostdev0","bus":"pci.6","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:29:00.3","id":"hostdev1","bus":"pci.7","addr":"0x0","romfile":"/var/lib/libvirt/vbios/GPU.rom"}' \
+-device '{"driver":"vfio-pci","host":"0000:28:00.1","id":"hostdev2","bus":"pci.8","addr":"0x0"}' \
+-device '{"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.4","addr":"0x0"}' \
+-sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny \
+-msg timestamp=on
